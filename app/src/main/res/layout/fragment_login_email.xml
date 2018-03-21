@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:animateLayoutChanges="true"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/iv_banner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:src="@drawable/img_banner"
+        android:visibility="visible" />
+
+    <RelativeLayout
+        android:id="@+id/layout_login"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/iv_banner">
+
+        <LinearLayout
+            android:id="@+id/layout_select_login_type"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="15dp"
+            android:visibility="visible">
+
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Tích điểm ngay, quà trao tay"
+                android:textColor="@color/text_grey_6"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Đăng nhập để tham gia gửi tích điểm và nhận những phần quà bất ngờ từ Enjoy Water"
+                android:textColor="@color/text_grey_6"
+                android:textSize="16sp" />
+
+            <RelativeLayout
+                android:id="@+id/layout_login_by_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp">
+
+                <ImageView
+                    android:id="@+id/iv_email"
+                    android:layout_width="23dp"
+                    android:layout_height="23dp"
+                    android:layout_marginRight="10dp"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/ic_email" />
+
+                <TextView
+                    android:id="@+id/tv_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/iv_email"
+                    android:text="Nhập email của bạn để tiếp tục"
+                    android:textColor="@color/text_blue"
+                    android:textSize="15sp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_below="@id/tv_email"
+                    android:layout_marginTop="5dp"
+                    android:layout_toRightOf="@id/iv_email"
+                    android:background="#666666" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/layout_login_by_fb"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="23dp">
+
+                <ImageView
+                    android:id="@+id/iv_fb"
+                    android:layout_width="23dp"
+                    android:layout_height="23dp"
+                    android:layout_marginRight="10dp"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/ic_fb" />
+
+                <TextView
+                    android:id="@+id/tv_fb"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/iv_fb"
+                    android:text="Đăng nhập bằng facebook"
+                    android:textColor="#3a5897"
+                    android:textSize="15sp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_below="@id/tv_fb"
+                    android:layout_marginTop="5dp"
+                    android:layout_toRightOf="@id/iv_fb"
+                    android:background="#666666" />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layout_fill_email"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <ImageButton
+                android:id="@+id/btn_back"
+                android:layout_width="47dp"
+                android:layout_height="47dp"
+                android:layout_marginTop="10dp"
+                android:background="@null"
+                android:padding="15dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/ic_back" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:paddingTop="5dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Email của bạn?"
+                    android:textColor="@color/text_grey_3"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:text="Địa chỉ email giúp bạn bảo mật tài khoản, phục hồi mật khẩu và nhận các thông tin ưu đãi dành riêng cho bạn."
+                    android:textColor="@color/text_grey_6"
+                    android:textSize="15sp" />
+
+                <RelativeLayout
+                    android:id="@+id/layout_submit_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="50dp">
+
+                    <ImageView
+                        android:id="@+id/iv_submit_email"
+                        android:layout_width="23dp"
+                        android:layout_height="23dp"
+                        android:layout_marginRight="10dp"
+                        android:scaleType="centerInside"
+                        android:src="@drawable/ic_email" />
+
+                    <EditText
+                        android:id="@+id/edt_submit_email"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_toRightOf="@id/iv_submit_email"
+                        android:background="@null"
+                        android:hint="Nhập email"
+                        android:imeOptions="actionDone"
+                        android:inputType="textEmailAddress"
+                        android:textColor="@color/text_grey_6"
+                        android:textSize="15sp" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:layout_below="@id/edt_submit_email"
+                        android:layout_marginTop="5dp"
+                        android:layout_toRightOf="@id/iv_submit_email"
+                        android:background="#666666" />
+
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginBottom="30dp"
+                    android:layout_weight="1"
+                    android:gravity="bottom"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Thông tin của bạn sẽ được bảo mật và không được  chia sẻ cho các bên thứ 3 nếu không có sự đồng ý của bạn."
+                        android:textSize="13sp" />
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/btn_next"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_marginLeft="15dp"
+                        android:background="@null"
+                        android:src="@drawable/ic_next_unavailable" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/layout_loading"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:visibility="gone">
+
+        <com.enjoywater.utils.ProgressWheel
+            android:id="@+id/progress_loading"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:padding="20dp"
+            android:background="@drawable/bg_dialog_loading"
+            android:layout_centerInParent="true"
+            app:matProg_barColor="@color/bg_color_login_ho"
+            app:matProg_barWidth="2.5dp" />
+
+    </RelativeLayout>
+</RelativeLayout>

@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Enjoy Water</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="action_settings">Settings</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="alert_data_error">Lỗi dữ liệu, xin hãy thử lại.</string>
+    <string name="alert_password_error">Mật khẩu chứa ít nhất 6 ký tự. Trong đó có ít nhất 1 ký tự IN HOA, 1 ký tự in thường, 1 ký tự số và không chứa khoảng trắng.</string>
+    <string name="alert_no_internet_signal">Không có tín hiệu Internet</string>
+    <string name="aler_phone_existed">Số điện thoại này đã tồn tại.</string>
+</resources>

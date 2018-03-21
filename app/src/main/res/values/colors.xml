@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#177fc2</color>
+    <color name="colorPrimaryDark">#177fc2</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="white">#ffffff</color>
+    <color name="text_blue">#429cff</color>
+    <color name="text_grey_3">#333333</color>
+    <color name="text_grey_6">#666666</color>
+    <color name="text_grey_9">#999999</color>
+    <color name="text_red">#e71515</color>
+    <color name="bg_color_login_ho">#5fb9f3</color>
+    <color name="bg_dialog">#7A000000</color>
+</resources>
