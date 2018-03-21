@@ -184,7 +184,7 @@ public class RegisterPhoneFragment extends Fragment {
             String phone = mActivity.getPhone();
             String name = mActivity.getName();
             String password = mActivity.getPassword();
-            Call< BaseResponse > registerUser = mainService.registerUser(email,phone,name,password);
+            Call<BaseResponse> registerUser = mainService.registerUser(email, phone, name, password);
             registerUser.enqueue(new Callback<BaseResponse>() {
                 @Override
                 public void onResponse(Call<BaseResponse> call, Response<BaseResponse> response) {
