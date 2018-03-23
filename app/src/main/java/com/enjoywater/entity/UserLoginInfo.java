@@ -7,7 +7,7 @@ import com.google.gson.annotations.SerializedName;
  * Created by TONG HAI on 3/21/2018.
  */
 
-public class UserInfo {
+public class UserLoginInfo {
     @SerializedName("role_name")
     private String role_name;
     @SerializedName("role")

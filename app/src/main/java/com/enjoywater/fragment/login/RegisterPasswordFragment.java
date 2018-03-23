@@ -1,12 +1,14 @@
-package com.enjoywater.fragment;
+package com.enjoywater.fragment.login;
 
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.text.Editable;
+import android.text.InputType;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
@@ -58,7 +60,7 @@ public class RegisterPasswordFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_login_password, container, false);
+        View view = inflater.inflate(R.layout.fragment_register_password, container, false);
         ButterKnife.bind(this, view);
         initUI();
         return view;
@@ -112,6 +114,29 @@ public class RegisterPasswordFragment extends Fragment {
             @Override
             public void afterTextChanged(Editable s) {
 
+            }
+        });
+        btnSeePassword.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                switch (motionEvent.getAction()) {
+                    case MotionEvent.ACTION_DOWN: {
+                        edtSubmitPassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+                        edtSubmitPassword.setSelection(edtSubmitPassword.length());
+                        break;
+                    }
+                    case MotionEvent.ACTION_UP: {
+                        edtSubmitPassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                        edtSubmitPassword.setSelection(edtSubmitPassword.length());
+                        break;
+                    }
+                    case MotionEvent.ACTION_OUTSIDE: {
+                        edtSubmitPassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                        edtSubmitPassword.setSelection(edtSubmitPassword.length());
+                        break;
+                    }
+                }
+                return true;
             }
         });
     }

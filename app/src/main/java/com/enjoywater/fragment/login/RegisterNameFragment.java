@@ -1,4 +1,4 @@
-package com.enjoywater.fragment;
+package com.enjoywater.fragment.login;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -53,7 +53,7 @@ public class RegisterNameFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_login_name, container, false);
+        View view = inflater.inflate(R.layout.fragment_register_name, container, false);
         ButterKnife.bind(this, view);
         initUI();
         return view;

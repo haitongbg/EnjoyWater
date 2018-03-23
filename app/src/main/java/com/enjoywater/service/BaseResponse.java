@@ -1,5 +1,6 @@
 package com.enjoywater.service;
 
+import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 /**
@@ -7,14 +8,42 @@ import com.google.gson.annotations.SerializedName;
  */
 
 public class BaseResponse {
+    @SerializedName("errorName")
+    private String errorName;
+    @SerializedName("errorCode")
+    private int errorCode;
+    @SerializedName("message")
+    private String message;
     @SerializedName("statusCode")
     private int statusCode;
     @SerializedName("success")
     private boolean success;
-    @SerializedName("message ")
-    private boolean message;
     @SerializedName("data")
     private Object data;
+
+    public String getErrorName() {
+        return errorName;
+    }
+
+    public void setErrorName(String errorName) {
+        this.errorName = errorName;
+    }
+
+    public int getErrorCode() {
+        return errorCode;
+    }
+
+    public void setErrorCode(int errorCode) {
+        this.errorCode = errorCode;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
 
     public int getStatusCode() {
         return statusCode;
@@ -24,20 +53,12 @@ public class BaseResponse {
         this.statusCode = statusCode;
     }
 
-    public boolean isSuccess() {
+    public boolean getSuccess() {
         return success;
     }
 
     public void setSuccess(boolean success) {
         this.success = success;
-    }
-
-    public boolean isMessage() {
-        return message;
-    }
-
-    public void setMessage(boolean message) {
-        this.message = message;
     }
 
     public Object getData() {

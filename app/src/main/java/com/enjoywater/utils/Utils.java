@@ -112,14 +112,11 @@ public class Utils {
     }
 
     public static void removeString(Context context, String key) {
-        Log.e("key", key);
-        SharedPreferences settings = context.getSharedPreferences("MyPref", Context.MODE_PRIVATE);
-        settings.edit().remove(key).commit();
+        PreferenceManager.getDefaultSharedPreferences(context).edit().remove(key).commit();
     }
 
     public static String getStringNotNull(Context context, String key) {
-        return PreferenceManager.getDefaultSharedPreferences(context)
-                .getString(key, "");
+        return PreferenceManager.getDefaultSharedPreferences(context).getString(key, "");
     }
 
     public static int dpToPx(float dp, Resources resources) {

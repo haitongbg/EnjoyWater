@@ -5,9 +5,89 @@
     android:layout_height="match_parent"
     tools:context="com.enjoywater.activity.MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!" />
+    <RelativeLayout
+        android:id="@+id/layout_left"
+        android:layout_width="@dimen/menu_left_width"
+        android:layout_height="match_parent"
+        android:background="@color/bg_home_tabbar"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="18dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="25dp"
+            android:adjustViewBounds="true"
+            android:scaleType="centerInside"
+            android:src="@drawable/text_enjoy_water" />
+
+        <LinearLayout
+            android:id="@+id/layout_tabbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:id="@+id/tab_home"
+                android:layout_width="@dimen/menu_left_width"
+                android:layout_height="@dimen/menu_left_width"
+                android:background="@color/bg_home_tab_selected"
+                android:clickable="true">
+
+                <View
+                    android:id="@+id/v_cordinator_home"
+                    android:layout_width="2.5dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/colorMain" />
+
+                <ImageView
+                    android:id="@+id/iv_tab_home"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/ic_home_active" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/tab_product"
+                android:layout_width="@dimen/menu_left_width"
+                android:layout_height="@dimen/menu_left_width"
+                android:clickable="true">
+
+                <View
+                    android:id="@+id/v_cordinator_product"
+                    android:layout_width="2.5dp"
+                    android:layout_height="match_parent"
+                    android:background="@null" />
+
+                <ImageView
+                    android:id="@+id/iv_tab_product"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/ic_product" />
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/btn_setting"
+            android:layout_width="@dimen/menu_left_width"
+            android:layout_height="@dimen/menu_left_width"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="12.5dp"
+            android:padding="12.5dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/ic_setting" />
+
+    </RelativeLayout>
+
+    <FrameLayout
+        android:id="@+id/frame_main_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_toRightOf="@id/layout_left" />
 
 </RelativeLayout>

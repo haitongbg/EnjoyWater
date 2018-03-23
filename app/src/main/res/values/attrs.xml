@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <declare-styleable name="CircularImageView">
-        <attr name="HorizontalListView_android_divider" format="boolean"></attr>
-        <attr name="border_width" format="dimension"></attr>
-        <attr name="border_color" format="color"></attr>
-        <attr name="shadow" format="boolean"></attr>
+        <attr name="HorizontalListView_android_divider" format="boolean"/>
+        <attr name="border_width" format="dimension"/>
+        <attr name="border_color" format="color"/>
+        <attr name="shadow" format="boolean"/>
     </declare-styleable>
     <declare-styleable name="ProgressWheel">
         <attr name="matProg_progressIndeterminate" format="boolean" />

@@ -22,9 +22,8 @@
  * THE SOFTWARE.
  */
 
-package com.enjoywater.utils;
+package com.enjoywater.view;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
@@ -43,7 +42,7 @@ import android.view.MotionEvent;
 import android.view.animation.Animation;
 import android.view.animation.ScaleAnimation;
 import android.widget.AdapterView;
-import android.widget.RelativeLayout;
+import android.widget.LinearLayout;
 
 import com.enjoywater.R;
 
@@ -56,7 +55,7 @@ import com.enjoywater.R;
  * @author Chutaux Robin
  * @version 2015.0512
  */
-public class RippleView extends RelativeLayout {
+public class RippleViewLinear extends LinearLayout {
 
     private int WIDTH;
     private int HEIGHT;
@@ -91,16 +90,16 @@ public class RippleView extends RelativeLayout {
 
     private OnRippleCompleteListener onCompletionListener;
 
-    public RippleView(Context context) {
+    public RippleViewLinear(Context context) {
         super(context);
     }
 
-    public RippleView(Context context, AttributeSet attrs) {
+    public RippleViewLinear(Context context, AttributeSet attrs) {
         super(context, attrs);
         init(context, attrs);
     }
 
-    public RippleView(Context context, AttributeSet attrs, int defStyle) {
+    public RippleViewLinear(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         init(context, attrs);
     }
@@ -169,7 +168,8 @@ public class RippleView extends RelativeLayout {
                 timerEmpty = 0;
                 if(Build.VERSION.SDK_INT < Build.VERSION_CODES.M)
                     canvas.restore();
-//                canvas.restore();
+
+//                  canvas.restore();
                 invalidate();
                 if (onCompletionListener != null) onCompletionListener.onComplete(this);
                 return;
@@ -331,7 +331,6 @@ public class RippleView extends RelativeLayout {
      *
      * @param rippleColor New color resource
      */
-    @SuppressLint("SupportAnnotationUsage")
     @ColorRes
 	public void setRippleColor(int rippleColor) {
 		this.rippleColor = rippleColor;
@@ -486,7 +485,7 @@ public class RippleView extends RelativeLayout {
      * Defines a callback called at the end of the Ripple effect
      */
     public interface OnRippleCompleteListener {
-        void onComplete(RippleView rippleView);
+        void onComplete(RippleViewLinear rippleView);
     }
 
     public enum RippleType {

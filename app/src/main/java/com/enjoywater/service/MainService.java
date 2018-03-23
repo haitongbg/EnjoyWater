@@ -33,6 +33,10 @@ public interface MainService {
     Call<BaseResponse> checkPhone(@Query(ApiConstant.Param.PHONE) String phone);
 
     @FormUrlEncoded
+    @POST(ApiConstant.Url.LOGIN)
+    Call<BaseResponse> login(@Field(ApiConstant.Param.EMAIL) String email, @Field(ApiConstant.Param.PASSWORD) String passWord);
+
+    @FormUrlEncoded
     @POST(ApiConstant.Url.REGISTER)
     Call<BaseResponse> registerUser(@Field(ApiConstant.Param.EMAIL) String email,
                                     @Field(ApiConstant.Param.PHONE) String phone,

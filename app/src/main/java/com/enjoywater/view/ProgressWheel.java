@@ -1,4 +1,4 @@
-package com.enjoywater.utils;
+package com.enjoywater.view;
 
 import android.content.Context;
 import android.content.res.TypedArray;

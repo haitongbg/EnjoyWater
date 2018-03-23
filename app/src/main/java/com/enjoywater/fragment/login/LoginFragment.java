@@ -1,4 +1,4 @@
-package com.enjoywater.fragment;
+package com.enjoywater.fragment.login;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -70,6 +70,7 @@ public class LoginFragment extends Fragment {
     RelativeLayout layoutLogin;
     private Context mContext;
     private MainService mainService;
+    FragmentManager mFragmentManager;
 
     public static LoginFragment newInstance() {
         return new LoginFragment();
@@ -80,11 +81,12 @@ public class LoginFragment extends Fragment {
         super.onCreate(savedInstanceState);
         mContext = getContext();
         mainService = MyApplication.getInstance().getMainService();
+        mFragmentManager = getFragmentManager();
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_login_email, container, false);
+        View view = inflater.inflate(R.layout.fragment_login, container, false);
         ButterKnife.bind(this, view);
         initUI();
         return view;
@@ -160,16 +162,19 @@ public class LoginFragment extends Fragment {
                         if (baseResponse.getStatusCode() == ApiConstant.Value.STATUS_CODE_SUCCESS) {
                             ((LoginActivity)mContext).setEmail(email);
                             RegisterPasswordFragment fragmentPassword = RegisterPasswordFragment.newInstance();
-                            FragmentManager fragmentManager = getFragmentManager();
-                            if (fragmentManager != null) {
-                                fragmentManager.beginTransaction()
-                                        .setCustomAnimations(R.anim.slide_right_to_left_in, R.anim.slide_right_to_left_out, R.anim.slide_left_to_right_in, R.anim.slide_left_to_right_out)
-                                        .replace(R.id.frame_login_container, fragmentPassword)
-                                        .addToBackStack(fragmentPassword.getClass().getName())
-                                        .commit();
-                            }
+                            mFragmentManager.beginTransaction()
+                                    .setCustomAnimations(R.anim.slide_right_to_left_in, R.anim.slide_right_to_left_out, R.anim.slide_left_to_right_in, R.anim.slide_left_to_right_out)
+                                    .replace(R.id.frame_login_container, fragmentPassword)
+                                    .addToBackStack(fragmentPassword.getClass().getName())
+                                    .commit();
                         } else if (baseResponse.getStatusCode() == ApiConstant.Value.STATUS_CODE_ERROR) {
-
+                            ((LoginActivity)mContext).setEmail(email);
+                            LoginPasswordFragment passwordFragment = LoginPasswordFragment.newInstance();
+                            mFragmentManager.beginTransaction()
+                                    .setCustomAnimations(R.anim.slide_right_to_left_in, R.anim.slide_right_to_left_out, R.anim.slide_left_to_right_in, R.anim.slide_left_to_right_out)
+                                    .replace(R.id.frame_login_container, passwordFragment)
+                                    .addToBackStack(passwordFragment.getClass().getName())
+                                    .commit();
                         }
                     }
 
