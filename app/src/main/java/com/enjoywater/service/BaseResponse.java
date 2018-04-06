@@ -53,7 +53,7 @@ public class BaseResponse {
         this.statusCode = statusCode;
     }
 
-    public boolean getSuccess() {
+    public boolean isSuccess() {
         return success;
     }
 

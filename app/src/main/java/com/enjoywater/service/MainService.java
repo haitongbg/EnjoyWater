@@ -1,7 +1,5 @@
 package com.enjoywater.service;
 
-import com.google.gson.JsonObject;
-
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
@@ -26,22 +24,61 @@ import retrofit2.http.Query;
  */
 
 public interface MainService {
+    //1.1
     @GET(ApiConstant.Url.CHECK_EMAIL)
     Call<BaseResponse> checkEmail(@Query(ApiConstant.Param.EMAIL) String email);
 
+    //1.2
     @GET(ApiConstant.Url.CHECK_PHONE)
     Call<BaseResponse> checkPhone(@Query(ApiConstant.Param.PHONE) String phone);
 
-    @FormUrlEncoded
-    @POST(ApiConstant.Url.LOGIN)
-    Call<BaseResponse> login(@Field(ApiConstant.Param.EMAIL) String email, @Field(ApiConstant.Param.PASSWORD) String passWord);
-
+    //1.3
     @FormUrlEncoded
     @POST(ApiConstant.Url.REGISTER)
     Call<BaseResponse> registerUser(@Field(ApiConstant.Param.EMAIL) String email,
                                     @Field(ApiConstant.Param.PHONE) String phone,
                                     @Field(ApiConstant.Param.FULLNAME) String fullName,
                                     @Field(ApiConstant.Param.PASSWORD) String passWord);
+
+    //1.4
+    @FormUrlEncoded
+    @POST(ApiConstant.Url.LOGIN)
+    Call<BaseResponse> login(@Field(ApiConstant.Param.EMAIL) String email,
+                             @Field(ApiConstant.Param.PASSWORD) String passWord);
+
+    //1.5
+    @FormUrlEncoded
+    @POST(ApiConstant.Url.SEND_DIVICE_TOKEN)
+    Call<BaseResponse> sendDeviceToken(@Field(ApiConstant.Param.TOKEN) String token,
+                                       @Field(ApiConstant.Param.DEVICE_TOKEN) String device_token,
+                                       @Field(ApiConstant.Param.TYPE) int type);
+
+    //2.1
+    @FormUrlEncoded
+    @POST(ApiConstant.Url.GET_TOP_SALE)
+    Call<BaseResponse> getTopSale(@Field(ApiConstant.Param.TOKEN) String token);
+
+    //2.2
+    @FormUrlEncoded
+    @POST(ApiConstant.Url.GET_NEAREST_SALE)
+    Call<BaseResponse> getNearestSale(@Field(ApiConstant.Param.TOKEN) String token,
+                                       @Field(ApiConstant.Param.LATITUDE) String latitude,
+                                       @Field(ApiConstant.Param.LONGITUDE) String longitude);
+
+    //3.1
+    @FormUrlEncoded
+    @POST(ApiConstant.Url.GET_NEWS)
+    Call<BaseResponse> getNews(@Field(ApiConstant.Param.TOKEN) String token);
+
+    //3.2
+    @FormUrlEncoded
+    @POST(ApiConstant.Url.GET_ALL_NEWS)
+    Call<BaseResponse> getAllNews(@Field(ApiConstant.Param.TOKEN) String token);
+
+    //3.3
+    @FormUrlEncoded
+    @POST(ApiConstant.Url.GET_DETAIL_NEWS)
+    Call<BaseResponse> getDetailNews(@Field(ApiConstant.Param.TOKEN) String token, @Field(ApiConstant.Param.ID) String id);
 
     //Factory
     class Factory {

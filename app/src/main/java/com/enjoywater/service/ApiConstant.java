@@ -7,14 +7,24 @@ package com.enjoywater.service;
 public class ApiConstant {
     public static class Url {
         public static final String BASE_DOMAIN = "http://api.enjoywater.vn/";
-        // CUSTOMER
+        //CUSTOMER
         public static final String CHECK_EMAIL = "/customer/check-email";
         public static final String CHECK_PHONE = "/customer/check-tel";
         public static final String REGISTER = "/customer/register";
         public static final String LOGIN = "/customer/login";
         public static final String SEND_DIVICE_TOKEN = "/customer/send-device-token";
         public static final String SAVE_PARENT = "/customer/save-parent";
-        // PRODUCT
+        public static final String EDIT_INFO = "/customer/edit-info";
+        //PRODUCT
+        public static final String GET_TOP_SALE = "/product/index";
+        public static final String GET_NEAREST_SALE = "/product/index";
+        //NEWS
+        public static final String GET_NEWS = "/news/index";
+        public static final String GET_ALL_NEWS = "/news/get-all";
+        public static final String GET_DETAIL_NEWS = "/news/detail";
+        //ORDER
+        public static final String ORDER = "/order/add";
+        public static final String ORDER_HISTORY = "/order/history";
     }
 
     public static class Param {
@@ -26,6 +36,8 @@ public class ApiConstant {
         public static final String DEVICE_TOKEN = "device_token";
         public static final String TYPE = "type";
         public static final String ID = "id";
+        public static final String LATITUDE = "lat";
+        public static final String LONGITUDE = "long";
     }
 
     public static class Value {
