@@ -24,4 +24,23 @@ public class TvSegoeuiSb extends AppCompatTextView {
         setTypeface(mTypeface);
     }
 
+    public interface OnLayoutListener {
+        void onLayouted(AppCompatTextView view);
+    }
+
+    private OnLayoutListener mOnLayoutListener;
+
+    public void setOnLayoutListener(OnLayoutListener listener) {
+        mOnLayoutListener = listener;
+    }
+
+    @Override
+    protected void onLayout(boolean changed, int left, int top, int right,
+                            int bottom) {
+        super.onLayout(changed, left, top, right, bottom);
+
+        if (mOnLayoutListener != null) {
+            mOnLayoutListener.onLayouted(this);
+        }
+    }
 }

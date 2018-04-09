@@ -1,6 +1,9 @@
 package com.enjoywater.adapter;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,12 +14,12 @@ import android.widget.RelativeLayout;
 
 import com.bumptech.glide.Glide;
 import com.enjoywater.R;
+import com.enjoywater.activity.NewsDetailActivity;
 import com.enjoywater.entity.News;
-import com.enjoywater.entity.Product;
 import com.enjoywater.entity.UserLoginInfo;
+import com.enjoywater.service.ApiConstant;
 import com.enjoywater.view.TvSegoeuiRegular;
 import com.enjoywater.view.TvSegoeuiSb;
-import com.google.firebase.auth.UserInfo;
 
 import java.util.ArrayList;
 
@@ -26,7 +29,6 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private static final int VIEW_TYPE_USER_INFO = 0;
-    private static final int VIEW_TYPE_TOP_SALES = 1;
     private static final int VIEW_TYPE_NEWS = 2;
     private Context mContext;
     private ArrayList<Object> mListHome;
@@ -41,8 +43,6 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         Object o = mListHome.get(position);
         if (o instanceof UserLoginInfo) {
             return VIEW_TYPE_USER_INFO;
-        } else if (o instanceof ArrayList) {
-            return VIEW_TYPE_TOP_SALES;
         } else {
             return VIEW_TYPE_NEWS;
         }
@@ -56,10 +56,6 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                 View view = layoutInflater.inflate(R.layout.item_home_user, parent, false);
                 return new UserInfoViewHolder(view);
             }
-            case VIEW_TYPE_TOP_SALES: {
-                View view = layoutInflater.inflate(R.layout.item_home_top_sales, parent, false);
-                return new TopSalesViewHolder(view);
-            }
             default: {
                 View view = layoutInflater.inflate(R.layout.item_home_news, parent, false);
                 return new NewsViewHolder(view);
@@ -72,8 +68,6 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         if (holder instanceof UserInfoViewHolder) {
             ((UserInfoViewHolder) holder).setData(position);
-        } else if (holder instanceof TopSalesViewHolder) {
-            ((TopSalesViewHolder) holder).setData(position);
         } else if (holder instanceof NewsViewHolder) {
             ((NewsViewHolder) holder).setData(position);
         }
@@ -128,20 +122,6 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         }
     }
 
-    public class TopSalesViewHolder extends RecyclerView.ViewHolder {
-        @BindView(R.id.rv_list_hot_sale)
-        RecyclerView rvListHotSale;
-
-        public TopSalesViewHolder(View itemView) {
-            super(itemView);
-            ButterKnife.bind(this, itemView);
-        }
-
-        private void setData(int position) {
-
-        }
-    }
-
     public class NewsViewHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.iv_banner)
         ImageView ivBanner;
@@ -158,12 +138,55 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         }
 
         private void setData(int position) {
-            News news = (News) mListHome.get(position);
+            final News news = (News) mListHome.get(position);
             if (news != null) {
                 Glide.with(mContext).load(news.getImage()).into(ivBanner);
-                tvTitle.setText(news.getName());
-                tvDescription.setText(news.getSummary());
+                String title = news.getName();
+                if (title != null && !title.isEmpty()) {
+                    tvTitle.setText(news.getName());
+                    tvTitle.setOnLayoutListener(new TvSegoeuiSb.OnLayoutListener() {
+                        @Override
+                        public void onLayouted(AppCompatTextView view) {
+                            if (view.getLineCount() > 2) {
+                                int lineEndIndex = tvTitle.getLayout().getLineEnd(1);
+                                String text = tvTitle.getText().subSequence(0, lineEndIndex - 3) + "... ";
+                                tvTitle.setText(text);
+                            }
+                        }
+                    });
+                    tvTitle.setVisibility(View.VISIBLE);
+                } else {
+                    tvTitle.setVisibility(View.GONE);
+                }
+                String description = news.getSummary();
+                if (description != null && !description.isEmpty()) {
+                    tvDescription.setText(news.getSummary());
+                    tvDescription.setOnLayoutListener(new TvSegoeuiSb.OnLayoutListener() {
+                        @Override
+                        public void onLayouted(AppCompatTextView view) {
+                            if (view.getLineCount() > 3) {
+                                int lineEndIndex = tvDescription.getLayout().getLineEnd(2);
+                                String text = tvDescription.getText().subSequence(0, lineEndIndex - 3) + "... ";
+                                tvDescription.setText(text);
+                            }
+                        }
+                    });
+                    tvDescription.setVisibility(View.VISIBLE);
+                } else {
+                    tvDescription.setVisibility(View.GONE);
+                }
+                btnViewDetail.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(mContext, NewsDetailActivity.class);
+                        intent.putExtra(ApiConstant.Param.ID, news.getId());
+                        mContext.startActivity(intent);
+                        ((Activity)mContext).overridePendingTransition(R.anim.slide_right_to_left_in, R.anim.slide_right_to_left_out);
+                    }
+                });
             }
         }
+
+
     }
 }

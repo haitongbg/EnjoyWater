@@ -9,7 +9,7 @@
         android:id="@+id/layout_left"
         android:layout_width="@dimen/menu_left_width"
         android:layout_height="match_parent"
-        android:background="@color/bg_home_tabbar"
+        android:background="@color/bg_home_tab_bar"
         android:orientation="horizontal">
 
         <ImageView
@@ -23,7 +23,6 @@
             android:src="@drawable/text_enjoy_water" />
 
         <LinearLayout
-            android:id="@+id/layout_tabbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"

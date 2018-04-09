@@ -3,8 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="5dp"
-    android:layout_marginTop="5dp"
+    android:layout_marginTop="8dp"
     app:cardBackgroundColor="@color/white"
     app:cardPreventCornerOverlap="false"
     app:cardUseCompatPadding="false"
@@ -19,8 +18,7 @@
             android:id="@+id/iv_banner"
             android:layout_width="match_parent"
             android:layout_height="180dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/test_img_item_home_news_banner" />
+            android:scaleType="centerCrop" />
 
         <com.enjoywater.view.TvSegoeuiSb
             android:id="@+id/tv_title"
@@ -29,8 +27,9 @@
             android:layout_marginLeft="14dp"
             android:layout_marginRight="14dp"
             android:layout_marginTop="14dp"
-            android:maxLines="2"
             android:textAllCaps="true"
+            android:maxLines="2"
+            android:text="Title..."
             android:textColor="@color/text_blue"
             android:textSize="16sp" />
 
@@ -42,18 +41,19 @@
             android:layout_marginRight="14dp"
             android:layout_marginTop="10dp"
             android:includeFontPadding="false"
-            android:maxLines="3"
             android:textAllCaps="false"
+            android:maxLines="3"
+            android:text="Description..."
             android:textColor="@color/text_grey_9"
             android:textSize="14.5sp" />
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="0.5dp"
+            android:layout_height="1dp"
             android:layout_marginLeft="14dp"
             android:layout_marginRight="14dp"
             android:layout_marginTop="14dp"
-            android:background="@color/text_grey_9" />
+            android:background="#dadada" />
 
         <Button
             android:id="@+id/btn_view_detail"

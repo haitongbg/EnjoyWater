@@ -54,31 +54,26 @@ public interface MainService {
                                        @Field(ApiConstant.Param.TYPE) int type);
 
     //2.1
-    @FormUrlEncoded
-    @POST(ApiConstant.Url.GET_TOP_SALE)
-    Call<BaseResponse> getTopSale(@Field(ApiConstant.Param.TOKEN) String token);
+    @GET(ApiConstant.Url.GET_TOP_SALE)
+    Call<BaseResponse> getTopSale(@Query(ApiConstant.Param.TOKEN) String token);
 
     //2.2
-    @FormUrlEncoded
-    @POST(ApiConstant.Url.GET_NEAREST_SALE)
-    Call<BaseResponse> getNearestSale(@Field(ApiConstant.Param.TOKEN) String token,
-                                       @Field(ApiConstant.Param.LATITUDE) String latitude,
-                                       @Field(ApiConstant.Param.LONGITUDE) String longitude);
+    @GET(ApiConstant.Url.GET_NEAREST_SALE)
+    Call<BaseResponse> getNearestSale(@Query(ApiConstant.Param.TOKEN) String token,
+                                       @Query(ApiConstant.Param.LATITUDE) String latitude,
+                                       @Query(ApiConstant.Param.LONGITUDE) String longitude);
 
     //3.1
-    @FormUrlEncoded
-    @POST(ApiConstant.Url.GET_NEWS)
-    Call<BaseResponse> getNews(@Field(ApiConstant.Param.TOKEN) String token);
+    @GET(ApiConstant.Url.GET_NEWS)
+    Call<BaseResponse> getNews(@Query(ApiConstant.Param.TOKEN) String token);
 
     //3.2
-    @FormUrlEncoded
-    @POST(ApiConstant.Url.GET_ALL_NEWS)
-    Call<BaseResponse> getAllNews(@Field(ApiConstant.Param.TOKEN) String token);
+    @GET(ApiConstant.Url.GET_ALL_NEWS)
+    Call<BaseResponse> getAllNews(@Query(ApiConstant.Param.TOKEN) String token);
 
     //3.3
-    @FormUrlEncoded
-    @POST(ApiConstant.Url.GET_DETAIL_NEWS)
-    Call<BaseResponse> getDetailNews(@Field(ApiConstant.Param.TOKEN) String token, @Field(ApiConstant.Param.ID) String id);
+    @GET(ApiConstant.Url.GET_DETAIL_NEWS)
+    Call<BaseResponse> getNewsDetail(@Query(ApiConstant.Param.TOKEN) String token, @Query(ApiConstant.Param.ID) int id);
 
     //Factory
     class Factory {

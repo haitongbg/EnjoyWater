@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,8 +19,13 @@ import com.enjoywater.service.BaseResponse;
 import com.enjoywater.service.MainService;
 import com.enjoywater.utils.Constant;
 import com.enjoywater.utils.Utils;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.gson.Gson;
-import com.google.gson.JsonArray;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -35,21 +39,18 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class HomeFragment extends Fragment {
-    private static HomeFragment instance;
-    @BindView(R.id.rvHome)
-    RecyclerView rvHome;
+public class ProductFragment extends Fragment implements OnMapReadyCallback {
+    private static ProductFragment instance;
     private Context mContext;
-    private LinearLayoutManager mLayoutManager;
-    private ArrayList<Object> mListHome;
     private UserLoginInfo mUserLoginInfo;
     private MainService mainService;
     private Gson gson = new Gson();
-    private HomeAdapter mHomeAdapter;
+    private ArrayList<Product> mProductsList;
+    private GoogleMap mMap;
 
-    public static HomeFragment getInstance() {
+    public static ProductFragment getInstance() {
         if (instance == null) {
-            instance = new HomeFragment();
+            instance = new ProductFragment();
         }
         return instance;
     }
@@ -58,49 +59,46 @@ public class HomeFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mContext = getContext();
-        mListHome = new ArrayList<>();
         mUserLoginInfo = gson.fromJson(Utils.getStringNotNull(mContext, Constant.USER_LOGIN_INFO), UserLoginInfo.class);
         mainService = MyApplication.getInstance().getMainService();
-        if (mUserLoginInfo != null) {
-            mListHome.add(mUserLoginInfo);
-        }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_home, container, false);
+        View view = inflater.inflate(R.layout.fragment_product, container, false);
         ButterKnife.bind(this, view);
         initUI();
-        getNews();
+        getTopSale();
         return view;
     }
 
     private void initUI() {
-        mLayoutManager = new LinearLayoutManager(mContext, LinearLayoutManager.VERTICAL, false);
-        rvHome.setLayoutManager(mLayoutManager);
+        SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager()
+                .findFragmentById(R.id.map);
+        mapFragment.getMapAsync(this);
     }
 
-    private void getNews() {
-        Call<BaseResponse> getNews = mainService.getAllNews(mUserLoginInfo.getToken());
-        getNews.enqueue(new Callback<BaseResponse>() {
+    private void getTopSale() {
+        Call<BaseResponse> getTopSale = mainService.getTopSale(mUserLoginInfo.getToken());
+        getTopSale.enqueue(new Callback<BaseResponse>() {
             @Override
             public void onResponse(Call<BaseResponse> call, Response<BaseResponse> response) {
                 if (response.body() != null && response.body().isSuccess() && response.body().getData() != null) {
+                    mProductsList = new ArrayList<>();
                     try {
-                        JSONArray arrayNews = new JSONArray(gson.toJson(response.body().getData()));
-                        for (int i = 0, z = arrayNews.length(); i<z; i++) {
-                            Object o = arrayNews.get(i);
+                        JSONArray arrayData = new JSONArray(gson.toJson(response.body().getData()));
+                        for (int i = 0, z = arrayData.length(); i<z; i++) {
+                            Object o = arrayData.get(i);
                             if (o instanceof JSONObject) {
-                                News news = gson.fromJson(o.toString(), News.class);
-                                if (news != null) {
-                                    mListHome.add(news);
+                                Product product = gson.fromJson(o.toString(), Product.class);
+                                if (product != null) {
+                                    mProductsList.add(product);
                                 }
                             }
                         }
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
-                    setDataHome();
                 }
             }
 
@@ -111,8 +109,17 @@ public class HomeFragment extends Fragment {
         });
     }
 
-    private void setDataHome() {
-        mHomeAdapter = new HomeAdapter(mContext, mListHome);
-        rvHome.setAdapter(mHomeAdapter);
+    private void setData() {
+
+    }
+
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+        mMap = googleMap;
+
+        // Add a marker in Sydney and move the camera
+        LatLng sydney = new LatLng(21.0053787, 105.811429);
+        mMap.addMarker(new MarkerOptions().position(sydney).title("My Home"));
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
     }
 }
