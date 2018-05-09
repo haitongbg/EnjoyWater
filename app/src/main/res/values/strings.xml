@@ -9,4 +9,6 @@
     <string name="enjoy_water">Enjoy Water</string>
     <string name="default_user_fullname">Khách hàng</string>
     <string name="title_activity_maps">Map</string>
+    <string name="product_name_default">Sản phẩm</string>
+    <string name="title_activity_confirm_order">ConfirmOrderActivity</string>
 </resources>

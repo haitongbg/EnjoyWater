@@ -16,7 +16,7 @@ import com.bumptech.glide.Glide;
 import com.enjoywater.R;
 import com.enjoywater.activity.NewsDetailActivity;
 import com.enjoywater.entity.News;
-import com.enjoywater.entity.UserLoginInfo;
+import com.enjoywater.entity.UserInfo;
 import com.enjoywater.service.ApiConstant;
 import com.enjoywater.view.TvSegoeuiRegular;
 import com.enjoywater.view.TvSegoeuiSb;
@@ -41,7 +41,7 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     @Override
     public int getItemViewType(int position) {
         Object o = mListHome.get(position);
-        if (o instanceof UserLoginInfo) {
+        if (o instanceof UserInfo) {
             return VIEW_TYPE_USER_INFO;
         } else {
             return VIEW_TYPE_NEWS;
@@ -98,12 +98,12 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         }
 
         private void setData(int position) {
-            UserLoginInfo userLoginInfo = (UserLoginInfo) mListHome.get(position);
-            if (userLoginInfo != null) {
+            UserInfo userInfo = (UserInfo) mListHome.get(position);
+            if (userInfo != null) {
                 //avatar
 
                 //name
-                String name = userLoginInfo.getFulname();
+                String name = userInfo.getFulname();
                 if (name != null && !name.isEmpty()) {
                     tvFullname.setText(name);
                 } else {

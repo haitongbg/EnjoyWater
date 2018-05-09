@@ -4,11 +4,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.widget.FrameLayout;
 
 import com.enjoywater.R;
-import com.enjoywater.entity.UserLoginInfo;
+import com.enjoywater.entity.UserInfo;
 import com.enjoywater.fragment.login.LoginFragment;
 import com.enjoywater.utils.Constant;
 import com.enjoywater.utils.Utils;
@@ -29,8 +28,8 @@ public class LoginActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         String json = Utils.getStringNotNull(this, Constant.USER_LOGIN_INFO);
         if (!json.isEmpty()) {
-            UserLoginInfo mUserLoginInfo = (new Gson()).fromJson(json, UserLoginInfo.class);
-            if (mUserLoginInfo != null && mUserLoginInfo.getToken() != null && !mUserLoginInfo.getToken().isEmpty()) {
+            UserInfo mUserInfo = (new Gson()).fromJson(json, UserInfo.class);
+            if (mUserInfo != null && mUserInfo.getToken() != null && !mUserInfo.getToken().isEmpty()) {
                 startActivity(new Intent(this, MainActivity.class));
                 finish();
             } else {

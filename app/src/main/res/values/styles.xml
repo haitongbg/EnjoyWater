@@ -15,4 +15,14 @@
 
     <style name="AppTheme.NoActionBar.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <style name="CustomDialogRightInAnimation">
+        <item name="android:windowEnterAnimation">@anim/slide_right_to_left_in</item>
+        <item name="android:windowExitAnimation">@anim/slide_left_to_right_out</item>
+    </style>
+
+    <style name="CustomDialogLeftInAnimation">
+        <item name="android:windowEnterAnimation">@anim/slide_left_to_right_in</item>
+        <item name="android:windowExitAnimation">@anim/slide_right_to_left_out</item>
+    </style>
+
 </resources>

@@ -25,7 +25,7 @@ import com.enjoywater.R;
 import com.enjoywater.activity.LoginActivity;
 import com.enjoywater.activity.MainActivity;
 import com.enjoywater.activity.MyApplication;
-import com.enjoywater.entity.UserLoginInfo;
+import com.enjoywater.entity.UserInfo;
 import com.enjoywater.service.ApiConstant;
 import com.enjoywater.service.BaseResponse;
 import com.enjoywater.service.MainService;
@@ -186,10 +186,10 @@ public class LoginPasswordFragment extends Fragment {
                     if (response.body() != null) {
                         BaseResponse baseResponse = response.body();
                         if (baseResponse.getStatusCode() == ApiConstant.Value.STATUS_CODE_SUCCESS) {
-                            UserLoginInfo userLoginInfo = gson.fromJson(gson.toJson(baseResponse.getData()), UserLoginInfo.class);
-                            if (userLoginInfo != null) {
-                                Log.e("User login", gson.toJson(userLoginInfo));
-                                Utils.saveString(mContext, Constant.USER_LOGIN_INFO, (new Gson()).toJson(userLoginInfo));
+                            UserInfo userInfo = gson.fromJson(gson.toJson(baseResponse.getData()), UserInfo.class);
+                            if (userInfo != null) {
+                                Log.e("User login", gson.toJson(userInfo));
+                                Utils.saveString(mContext, Constant.USER_LOGIN_INFO, (new Gson()).toJson(userInfo));
                                 mActivity.startActivity(new Intent(mActivity, MainActivity.class));
                                 mActivity.overridePendingTransition(R.anim.slide_right_to_left_in, R.anim.slide_right_to_left_out);
                             }

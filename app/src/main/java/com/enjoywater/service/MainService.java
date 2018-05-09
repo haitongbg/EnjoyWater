@@ -13,10 +13,12 @@ import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 /**
@@ -60,8 +62,8 @@ public interface MainService {
     //2.2
     @GET(ApiConstant.Url.GET_NEAREST_SALE)
     Call<BaseResponse> getNearestSale(@Query(ApiConstant.Param.TOKEN) String token,
-                                       @Query(ApiConstant.Param.LATITUDE) String latitude,
-                                       @Query(ApiConstant.Param.LONGITUDE) String longitude);
+                                      @Query(ApiConstant.Param.LATITUDE) String latitude,
+                                      @Query(ApiConstant.Param.LONGITUDE) String longitude);
 
     //3.1
     @GET(ApiConstant.Url.GET_NEWS)
@@ -74,6 +76,11 @@ public interface MainService {
     //3.3
     @GET(ApiConstant.Url.GET_DETAIL_NEWS)
     Call<BaseResponse> getNewsDetail(@Query(ApiConstant.Param.TOKEN) String token, @Query(ApiConstant.Param.ID) int id);
+
+    //4.1
+    @FormUrlEncoded
+    @POST(ApiConstant.Url.ORDER)
+    Call<BaseResponse> order(@Field(ApiConstant.Param.TOKEN) String token, @Field(ApiConstant.Param.LATITUDE) String latitude, @Field(ApiConstant.Param.LONGITUDE) String longitude, @Field(ApiConstant.Param.ADDRESS) String address, @Body String products);
 
     //Factory
     class Factory {

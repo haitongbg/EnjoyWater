@@ -3,10 +3,70 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_list_product"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_list_product" />
+
     <fragment
         android:id="@+id/map"
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:layout_above="@+id/layout_address"
+        android:layout_below="@id/rv_list_product" />
+
+    <LinearLayout
+        android:id="@+id/layout_address"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/white"
+        android:elevation="2dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="10dp">
+
+        <ImageView
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/ic_location_green" />
+
+        <com.enjoywater.view.TvSegoeuiRegular
+            android:id="@+id/tv_address"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="5dp"
+            android:layout_weight="1"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:hint="Chọn địa điểm giao hàng..."
+            android:textColor="@color/text_grey_3"
+            android:textSize="16sp" />
+
+        <ImageView
+            android:layout_width="37dp"
+            android:layout_height="26dp"
+            android:padding="5dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/ic_edit_grey" />
+
+    </LinearLayout>
+
+    <ImageView
+        android:visibility="gone"
+        android:clickable="true"
+        android:id="@+id/btn_order"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_above="@id/layout_address"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="7dp"
+        android:layout_marginRight="7dp"
+        android:scaleType="centerInside"
+        android:src="@drawable/ic_next_shadow" />
 
 </RelativeLayout>

@@ -11,6 +11,8 @@ public class Product {
     private String name;
     @SerializedName("id")
     private int id;
+    private boolean selected = false;
+    private int count = 1;
 
     public int getPrice() {
         return price;
@@ -42,5 +44,21 @@ public class Product {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public boolean isSelected() {
+        return selected;
+    }
+
+    public void setSelected(boolean selected) {
+        this.selected = selected;
+    }
+
+    public int getCount() {
+        return count;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
     }
 }

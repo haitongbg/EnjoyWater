@@ -2,7 +2,6 @@ package com.enjoywater.activity;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.AppCompatTextView;
 import android.view.View;
 import android.webkit.WebView;
 import android.widget.ImageView;
@@ -11,7 +10,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.enjoywater.R;
 import com.enjoywater.entity.News;
-import com.enjoywater.entity.UserLoginInfo;
+import com.enjoywater.entity.UserInfo;
 import com.enjoywater.service.ApiConstant;
 import com.enjoywater.service.BaseResponse;
 import com.enjoywater.service.MainService;
@@ -23,8 +22,6 @@ import com.google.gson.Gson;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -41,7 +38,7 @@ public class NewsDetailActivity extends AppCompatActivity {
     WebView webDetail;
     private News mNews;
     private MainService mainService;
-    private UserLoginInfo mUserLoginInfo;
+    private UserInfo mUserInfo;
     private Gson gson = new Gson();
 
 
@@ -54,7 +51,7 @@ public class NewsDetailActivity extends AppCompatActivity {
         int newsId = getIntent().getIntExtra(ApiConstant.Param.ID, -1);
         if (newsId != -1) {
             mainService = MyApplication.getInstance().getMainService();
-            mUserLoginInfo = gson.fromJson(Utils.getStringNotNull(this, Constant.USER_LOGIN_INFO), UserLoginInfo.class);
+            mUserInfo = gson.fromJson(Utils.getStringNotNull(this, Constant.USER_LOGIN_INFO), UserInfo.class);
             getNewsDetail(newsId);
         } else {
             finish();
@@ -68,7 +65,7 @@ public class NewsDetailActivity extends AppCompatActivity {
 
     private void getNewsDetail(int newsId) {
         if (Utils.isInternetOn(this)) {
-            Call<BaseResponse> getNewsDetail = mainService.getNewsDetail(mUserLoginInfo.getToken(), newsId);
+            Call<BaseResponse> getNewsDetail = mainService.getNewsDetail(mUserInfo.getToken(), newsId);
             getNewsDetail.enqueue(new Callback<BaseResponse>() {
                 @Override
                 public void onResponse(Call<BaseResponse> call, Response<BaseResponse> response) {

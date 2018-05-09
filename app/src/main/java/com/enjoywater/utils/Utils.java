@@ -576,7 +576,7 @@ public class Utils {
 
     // Validating phone
     public static boolean isValidPhone(String phone) {
-        String Name_PATTERN = "(\\+84|0)\\d{9,10}";
+        String Name_PATTERN = "^((\\+84|0)1[2689]|09)[0-9]{8}$";
         Pattern pattern = Pattern.compile(Name_PATTERN);
         Matcher matcher = pattern.matcher(phone);
         return matcher.matches();

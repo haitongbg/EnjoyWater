@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,14 +13,12 @@ import com.enjoywater.R;
 import com.enjoywater.activity.MyApplication;
 import com.enjoywater.adapter.HomeAdapter;
 import com.enjoywater.entity.News;
-import com.enjoywater.entity.Product;
-import com.enjoywater.entity.UserLoginInfo;
+import com.enjoywater.entity.UserInfo;
 import com.enjoywater.service.BaseResponse;
 import com.enjoywater.service.MainService;
 import com.enjoywater.utils.Constant;
 import com.enjoywater.utils.Utils;
 import com.google.gson.Gson;
-import com.google.gson.JsonArray;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -42,7 +39,7 @@ public class HomeFragment extends Fragment {
     private Context mContext;
     private LinearLayoutManager mLayoutManager;
     private ArrayList<Object> mListHome;
-    private UserLoginInfo mUserLoginInfo;
+    private UserInfo mUserInfo;
     private MainService mainService;
     private Gson gson = new Gson();
     private HomeAdapter mHomeAdapter;
@@ -59,10 +56,10 @@ public class HomeFragment extends Fragment {
         super.onCreate(savedInstanceState);
         mContext = getContext();
         mListHome = new ArrayList<>();
-        mUserLoginInfo = gson.fromJson(Utils.getStringNotNull(mContext, Constant.USER_LOGIN_INFO), UserLoginInfo.class);
+        mUserInfo = gson.fromJson(Utils.getStringNotNull(mContext, Constant.USER_LOGIN_INFO), UserInfo.class);
         mainService = MyApplication.getInstance().getMainService();
-        if (mUserLoginInfo != null) {
-            mListHome.add(mUserLoginInfo);
+        if (mUserInfo != null) {
+            mListHome.add(mUserInfo);
         }
     }
 
@@ -81,7 +78,7 @@ public class HomeFragment extends Fragment {
     }
 
     private void getNews() {
-        Call<BaseResponse> getNews = mainService.getAllNews(mUserLoginInfo.getToken());
+        Call<BaseResponse> getNews = mainService.getAllNews(mUserInfo.getToken());
         getNews.enqueue(new Callback<BaseResponse>() {
             @Override
             public void onResponse(Call<BaseResponse> call, Response<BaseResponse> response) {
@@ -101,6 +98,8 @@ public class HomeFragment extends Fragment {
                         e.printStackTrace();
                     }
                     setDataHome();
+                } else {
+
                 }
             }
 

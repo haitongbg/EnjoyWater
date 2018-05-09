@@ -7,7 +7,7 @@ import com.google.gson.annotations.SerializedName;
  * Created by TONG HAI on 3/21/2018.
  */
 
-public class UserLoginInfo {
+public class UserInfo {
     @SerializedName("role_name")
     private String role_name;
     @SerializedName("role")
@@ -18,6 +18,10 @@ public class UserLoginInfo {
     private int id;
     @SerializedName("token")
     private String token;
+    @SerializedName("phone")
+    private String phone;
+    private String note, address;
+    private double latitude, longitude;
 
     public String getRole_name() {
         return role_name;
@@ -57,5 +61,45 @@ public class UserLoginInfo {
 
     public void setToken(String token) {
         this.token = token;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getNote() {
+        return note;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
+    }
+
+    public double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
+    }
+
+    public double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 }

@@ -4,11 +4,7 @@ import android.app.Application;
 import android.content.Context;
 import android.support.multidex.MultiDex;
 
-import com.enjoywater.entity.UserLoginInfo;
 import com.enjoywater.service.MainService;
-import com.enjoywater.utils.Constant;
-import com.enjoywater.utils.Utils;
-import com.google.gson.Gson;
 
 public class MyApplication extends Application {
     private static MyApplication mInstance;
