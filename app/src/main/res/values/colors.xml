@@ -10,6 +10,7 @@
     <color name="text_grey_6">#666666</color>
     <color name="text_grey_9">#999999</color>
     <color name="text_red">#e71515</color>
+    <color name="text_orange">#ffa13c</color>
     <color name="bg_color_login_ho">#5fb9f3</color>
     <color name="bg_dialog">#7A000000</color>
     <color name="bg_home_tab_bar">#f5f5f5</color>

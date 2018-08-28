@@ -51,7 +51,7 @@ public class ConfirmOrderActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_confirm_order);
+        setContentView(R.layout.dialog_confirm_order);
         ButterKnife.bind(this);
     }
 

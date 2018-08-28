@@ -25,6 +25,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
     private Context mContext;
     private ArrayList<Product> mListProduct;
     private ProductFragment.ItemClickListener mItemClickListener;
+    private DecimalFormat formatter = new DecimalFormat("###,###,###");
 
     public ProductAdapter(Context context, ArrayList<Product> listProduct, ProductFragment.ItemClickListener itemClickListener) {
         this.mContext = context;
@@ -74,7 +75,6 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
                     tvName.setText(R.string.product_name_default);
                 }
                 int price = product.getPrice();
-                DecimalFormat formatter = new DecimalFormat("###,###,###");
                 tvPrice.setText(formatter.format(price) + " đ");
                 //Glide.with(mContext).load(product.getImage()).into(ivImage);
                 if (product.isSelected()) {

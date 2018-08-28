@@ -24,6 +24,7 @@ public class ProductConfirmAdapter extends RecyclerView.Adapter<ProductConfirmAd
     private Context mContext;
     private ArrayList<Product> mListProduct;
     private DialogConfirmProduct.ItemClickListener mItemClickListener;
+    private DecimalFormat formatter = new DecimalFormat("###,###,###");
 
     public ProductConfirmAdapter(Context context, ArrayList<Product> listProduct, DialogConfirmProduct.ItemClickListener itemClickListener) {
         this.mContext = context;
@@ -75,7 +76,6 @@ public class ProductConfirmAdapter extends RecyclerView.Adapter<ProductConfirmAd
                     tvName.setText(R.string.product_name_default);
                 }
                 int price = product.getPrice();
-                DecimalFormat formatter = new DecimalFormat("###,###,###");
                 tvPrice.setText(formatter.format(price) + " đ");
                 int count = product.getCount();
                 tvCount.setText(count + "");

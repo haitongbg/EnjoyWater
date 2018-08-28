@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:weightSum="10">
+
+        <com.enjoywater.view.TvSegoeuiRegular
+            android:id="@+id/tv_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="6"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:text="Bình nước Lavie 19L"
+            android:textColor="@color/text_grey_3"
+            android:textSize="14sp" />
+
+        <com.enjoywater.view.TvSegoeuiSb
+            android:id="@+id/tv_count"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:singleLine="true"
+            android:text="x444"
+            android:textColor="@color/text_grey_3"
+            android:textSize="13sp" />
+
+        <com.enjoywater.view.TvSegoeuiSb
+            android:id="@+id/tv_total_price"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:gravity="right"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:text="220.000 đ"
+            android:textColor="@color/text_grey_3"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="#dedede" />
+</LinearLayout>
